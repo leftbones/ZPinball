@@ -18,6 +18,7 @@ static class Global {
     public static float Gravity = 5.0f;
     public static float Friction = 0.0f;
 
-    // Settings
+    // Debug
     public static bool DrawColliders = false;
+    public static bool DrawOrigins = false;
 }

@@ -5,13 +5,7 @@ using static Raylib_cs.Raylib;
 namespace ZPinball;
 
 class Ball : Element {
-    public Vector2 Velocity { get; set; }
-    public float XV { get; set; }
-    public float YV { get; set; }
-
     public Ball(Vector3 position) : base(position, new CircleShape(9.0f)) {
-        Shape.Parent = this;
-
         Velocity = new Vector2(0, 0);
 
         PhysicsMaterial = new PhysicsMaterial(0.5, 0.5);
@@ -27,8 +21,7 @@ class Ball : Element {
     // Move based on velocity
     public void Move() {
         Position = new Vector3(X + Velocity.X, Y + Velocity.Y, Z);
-        XV = 0;
-        YV = 0;
+        Acceleration = Vector2.Zero;
     }
 
     // Bounce off of another element
@@ -42,7 +35,7 @@ class Ball : Element {
     }
 
     public override void PhysicsUpdate(float delta) {
-        Velocity = new Vector2(Velocity.X + XV * delta, Velocity.Y + YV * delta);
+        Velocity = new Vector2(Velocity.X + Acceleration.X * delta, Velocity.Y + Acceleration.Y * delta);
         Move();
     }
 }

@@ -13,11 +13,17 @@ class Physics {
         Elements = new List<Element>();
     }
 
-    public bool AddElement(Element element) {
+    public void AddBall() {
+        var Ball = new Ball(new Vector3(Table.Origin.X, Table.Position.Y + 75.0f, 0.0f));
+        Table.AddBall(Ball);
+    }
+
+    public void AddElement(Element element) {
         if (element.Collider is not null && element.PhysicsMaterial is not null) {
             Elements.Add(element);
-            return true;
+            Table.AddElement(element);
+        } else {
+            Table.AddElement(element);
         }
-        return false;
     }
 }

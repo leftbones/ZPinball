@@ -8,19 +8,25 @@ class Element {
     public float Y { get { return Position.Y; } set { Position = new Vector3(X, value, Z); } }
     public float Z { get { return Position.Z; } set { Position = new Vector3(X, Y, value); } }
 
-    public Shape Shape { get; set; }
+    public Shape? Shape { get; set; }
     public Collider? Collider { get; set; }
     public PhysicsMaterial? PhysicsMaterial { get; set; }
 
-    public Element(Vector3 position, Shape shape, Collider? collider=null, PhysicsMaterial? physics_material=null) {
+    public Vector2 Velocity { get; set; }
+    public Vector2 Acceleration { get; set; }
+
+    public Element(Vector3 position, Shape? shape=null, Collider? collider=null, PhysicsMaterial? physics_material=null) {
         Position = position;
-        Shape = shape;
+        Shape ??= shape;
         Collider ??= collider;
         PhysicsMaterial ??= physics_material;
     }
 
     public virtual void Update(float delta) {
-        Shape.Update();
+        if (Shape is not null) {
+            Shape.Position = new Vector2(Position.X, Position.Y);
+            Shape.Update();
+        }
     }
 
     public virtual void PhysicsUpdate(float delta) {
@@ -28,6 +34,6 @@ class Element {
     }
 
     public virtual void Draw() {
-        Shape.Draw();
+        Shape?.Draw();
     }
 }

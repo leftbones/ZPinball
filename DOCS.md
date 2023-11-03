@@ -36,6 +36,8 @@ Abstract class used as a base for all objects on the Table. Exists in 3D space.
 | `Shape` | Shape representing the element in 2D space |
 | `PhysicsMaterial` | Physical properties of the ball (May be null if element is not simulated in physics) |
 | `Collider` | `CircleCollider` of the ball (May be null if element is not simulated in physics) |
+| `Velocity` | `Vector2` for calculating the change in position over time, only used if this element is simulated in physics |
+| `Acceleration` | `Vector2` for calculating the change in velocity over time, only used if this element is simulated in physics |
 
 
 ### Ball
@@ -45,9 +47,7 @@ A pinball, affected by physics. Exists in 3D space.
 
 | Name | Description |
 | --- | --- |
-| `Velocity` | `Vector2` representing velocity for the physics simulation |
-| `XV` | Change to X velocity to be applied during the next update |
-| `YV` | Change to Y velocity to be applied during the next update |
+| `` |  |
 
 ## PhysicsMaterial
 Data container with information about how an element should behave in the physics simulation.
@@ -69,7 +69,6 @@ Shapes are a visual representation of an Element.
 
 | Name | Description |
 | --- | --- |
-| `Parent` | Element the shape belongs to|
 | `Position` | Location in 2D space |
 
 ### CircleShape

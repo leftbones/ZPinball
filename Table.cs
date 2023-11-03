@@ -22,14 +22,11 @@ class Table {
 
         Elements = new List<Element>();
         Balls = new List<Ball>();
-
-        AddBall();
     }
 
     // Add a ball to the table
-    public void AddBall() {
-        var Ball = new Ball(new Vector3(Origin.X, Position.Y + 75.0f, 0.0f));
-        Balls.Add(Ball);
+    public void AddBall(Ball ball) {
+        Balls.Add(ball);
     }
 
     // Add an element to the table
@@ -74,28 +71,9 @@ class Table {
             Element.Draw();
         }
 
-        // // Balls
+        // Balls
         foreach (var Ball in Balls) {
             Ball.Draw();
         }
-
-        // Testing
-        var Pos = new Vector3(Origin.X - 100.0f, Position.Y + Size.Y - 75.0f, 0.0f);
-        var FlipperShape = new PolyShape(new List<Vector2>() {
-            new(Pos.X - 2, Pos.Y - 10),
-            new(Pos.X - 10, Pos.Y - 7),
-            new(Pos.X - 12, Pos.Y),
-            new(Pos.X - 10, Pos.Y + 7),
-            new(Pos.X - 2, Pos.Y + 10),
-            new(Pos.X + 50, Pos.Y + 5),
-            new(Pos.X + 54, Pos.Y + 4),
-            new(Pos.X + 55, Pos.Y),
-            new(Pos.X + 54, Pos.Y - 4),
-            new(Pos.X + 50, Pos.Y - 5)
-        });
-
-        var Flipper = new Flipper(Pos, FlipperShape);
-
-        Flipper.Draw();
     }
 }

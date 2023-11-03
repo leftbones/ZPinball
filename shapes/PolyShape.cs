@@ -5,22 +5,21 @@ using static Raylib_cs.Raylib;
 namespace ZPinball;
 
 class PolyShape : Shape {
-    public List<Vector2> Points { get; private set; }
+    public List<Vector2> Points { get; set; }
 
-    public PolyShape(List<Vector2> points) : base() {
+    public PolyShape(List<Vector2> points, Color? color=null) : base(color) {
         Points = points;
     }
 
     public override void Draw() {
-        DrawLineEx(Position - new Vector2(0, 5), Position + new Vector2(0, 5), 1.0f, Color.WHITE);
-        DrawLineEx(Position - new Vector2(5, 0), Position + new Vector2(5, 0), 1.0f, Color.WHITE);
-
         var P = Points[0];
         foreach (var Point in Points) {
-            DrawLineEx(P, Point, 1.0f, Color.WHITE);
+            DrawLineEx(Position + P, Position + Point, 1.0f, Color);
             P = Point;
         }
 
-        DrawLineEx(P, Points[0], 1.0f, Color.WHITE);
+        DrawLineEx(Position + P, Position + Points[0], 1.0f, Color);
+
+        base.Draw();
     }
 }
